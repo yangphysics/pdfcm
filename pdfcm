@@ -4,14 +4,14 @@
 
 function display_usage
 {
-    echo ''
-    echo ' ***  A simple tool to combine multiple pdf files into a single one  ***'
-    echo ''
-    echo ' Usage: '
-    echo '         pdfcm all.pdf p1.pdf p2.pdf p3.pdf'
-    echo '         pdfcm all.pdf p?.pdf '
-    echo '         pdfcm all.pdf p*.pdf '
-    echo '  '
+    echo ""
+    echo " ***  A simple tool to combine multiple pdf files into a single one  ***"
+    echo ""
+    echo " Usage: "
+    echo "         pdfcm all.pdf p1.pdf p2.pdf p3.pdf"
+    echo "         pdfcm all.pdf p?.pdf "
+    echo "         pdfcm all.pdf p*.pdf "
+    echo "  "
 }
 
 if [ $# -lt 2 ]
@@ -30,18 +30,18 @@ else
     if [ $? -eq 0 ]; then
         #  successful
         #  output some information
-        echo '  '
+        echo "  "
         echo "     **********************************"
         echo "                Well Done!!            "
         echo "     **********************************"
-        echo '  '
+        echo "  "
         echo "  Input pdf files are: $@ "
-        echo '  '
+        echo "  "
         echo "  Output pdf file is : ${final_pdf_file} "
-        echo '  '
+        echo "  "
     else
-        #  something could be wrong
-        echo '  '
+        #  something is wrong
+        echo "  "
         echo "     **********************************"
         echo "       Something is obviously wrong.   "
         echo "       Check the usage and your input! "
