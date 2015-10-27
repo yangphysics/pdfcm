@@ -1,0 +1,53 @@
+#!/usr/bin/sh
+# combine multiple pdf files into one
+#
+
+function display_usage
+{
+    echo ''
+    echo ' ***  A simple tool to combine multiple pdf files into a single one  ***'
+    echo ''
+    echo ' Usage: '
+    echo '         pdfcm all.pdf p1.pdf p2.pdf p3.pdf'
+    echo '         pdfcm all.pdf p?.pdf '
+    echo '         pdfcm all.pdf p*.pdf '
+    echo '  '
+}
+
+if [ $# -lt 2 ]
+then
+    display_usage
+else
+    #  first argument is the target pdf file name
+    final=$1
+    #  get all the other arguments where are the source pdf files
+    shift
+    files=$@
+    
+    #  do the combination using ghostscript
+    gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=${final} ${files}
+
+    #  check if the job is done successfully
+    if [ $? -eq 0 ]; then
+        #  successful
+        #  output some information
+        echo '  '
+        echo "     **********************************"
+        echo "                Well Done!!            "
+        echo "     **********************************"
+        echo '  '
+        echo "  Input pdf files are: ${files} "
+        echo '  '
+        echo "  Output pdf file is : ${final} "
+        echo '  '
+    else
+        #  something could be wrong
+        echo '  '
+        echo "     **********************************"
+        echo "       Something is obviously wrong.   "
+        echo "       Check the usage and your input! "
+        echo "     **********************************"
+        display_usage
+    fi
+fi
+
